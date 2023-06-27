@@ -1,0 +1,100 @@
+使用GPU
+选择:--execution-provider
+默认值:cpu
+根据您安装的onnxruntime包，使用此选项指定相应的执行提供程序以利用您的GPU。下面是流行的执行提供商列表，完整列表可以在这里找到。如果您不确定，请使用--help选项在控制台中查看可用的提供程序。
+cuda: for NVIDIA
+rocm: for AMD (linux only)
+dml: for windows
+coreml: for mac
+
+
+选择框架处理器
+option: --frame-processor
+default: face_swapper
+这个选项可以让你选择一个或多个“帧处理器”应用到视频的各种影响。如果使用多个处理器，它们应该用空格分隔。以下是可用的帧处理器:
+face_swapper: swaps face(s)
+face_enhancer: enhances the face(s) using GFPGAN v1.4
+
+保留视频的FPS
+option: --keep-fps
+default: False
+
+为了更快的处理，roop默认将视频的FPS降低到30，但如果你想保留原始的FPS，你可以使用这个开关。
+保持生成的帧
+option: --keep-frames
+default: False
+
+在处理视频时，roop提取所有帧并将其存储在本地。进程完成后，包含它们的目录将被删除。使用--keep-frames开关将防止删除。
+
+替换所有面
+选择:--很多脸
+默认值:假
+默认情况下，每帧中只有一张脸被替换，这张脸是帧中最左边的脸。如果你想替换所有的面，使用这个开关。
+
+选择一个视频编码器
+option: --video-encoder
+default: libx264
+这可以让你选择一个视频编码器，目前可用的编码器是:libx264, libx265, libvpx-vp9 '
+
+
+
+设置视频质量
+option: --video-quality
+default: 18
+您不需要触摸这个选项，但如果您这样做，它会接受1到51之间的数字。
+
+限制内存
+option: --max-memory
+default: system dependent
+如果您想限制RAM线程可以使用多少，请使用此选项。它接受一个数字，例如—max-memory 4表示4GB限制。
+
+执行线程
+选择:--执行线程
+默认值:系统依赖
+
+这控制了应该并行运行多少线程来使用给定的执行提供程序来处理帧。尝试不同的值，找出最适合您的系统的值
+
+
+
+
+
+
+
+
+
+
+
+
+CUDA Execution Provider (Nvidia)CUDA执行提供商（英伟达）
+Install CUDA Toolkit 11.8
+安装CUDA Toolkit 11.8
+Install dependencies:安装依赖项：
+pip uninstall onnxruntime onnxruntime-gpu
+pip install onnxruntime-gpu
+Usage in case the provider is available:在提供程序可用时的用法：
+python run.py --execution-provider cuda
+
+
+CoreML Execution Provider (Apple)CoreML执行提供程序（Apple）
+Install dependencies:安装依赖项：
+pip uninstall onnxruntime onnxruntime-silicon
+pip install onnxruntime-silicon
+Usage in case the provider is available:在提供程序可用时的用法：
+python run.py --execution-provider coreml
+
+
+OpenVINO™ Execution Provider (Intel)OpenVINO™执行提供程序（英特尔）
+Install dependencies:安装依赖项：
+pip uninstall onnxruntime onnxruntime-openvino
+pip install onnxruntime-openvino
+Usage in case the provider is available:在提供程序可用时的用法：
+python run.py --execution-provider openvino
+
+
+ROCm Execution Provider (AMD)ROCm执行提供程序（AMD）
+Build and install custom wheels from the onnxruntime source.
+从onnxruntime源代码构建和安装自定义轮子。
+
+Usage in case the provider is available:在提供程序可用时的用法：
+
+python run.py --execution-provider rocm

@@ -1,0 +1,40 @@
+Falsy Dependencies resolution虚假依赖性解决
+Make sure to run Python 3.10 to prevent dependencies conflicts.
+确保运行Python 3.10以防止依赖项冲突。
+
+Runtime errors during processing处理期间的运行时错误
+A Non zero status code... or Cannot allocate memory... during processing results in lost frames and indicate that your GPU is out of VRAM or just overwhelmed - you need to lower the --execution-threads to 1 and increase it slowly.
+在处理过程中出现Non zero status code...或Cannot allocate memory...会导致帧丢失，并表示GPU的VRAM不足或不堪重负-您需要将--execution-threads降低到1，然后慢慢增加。
+
+No module named 'xxx'没有名为“xxx”的模块
+A ModuleNotFoundError indicates that the dependencies have not been correctly installed.
+ModuleNotFoundError表示没有正确安装依赖项。
+
+pip install -r requirements.txt
+Module 'xxx' has no attribute 'xxx'模块“xxx”没有属性“xxx”
+A AttributeError indicates that the dependencies have not been correctly installed.
+AttributeError表示没有正确安装依赖项。
+
+Solution to most OpenCV errors解决大多数OpenCV错误
+In most cases it helps to reinstall OpenCV.
+在大多数情况下，它有助于重新安装OpenCV。
+
+pip uninstall opencv-python opencv-python-headless
+pip install opencv-python
+Solution to most Protobuf errors解决大多数Protobuf错误
+In most cases it helps to reinstall all dependencies that provide a model like insightface and opennsfw2.
+在大多数情况下，它有助于重新安装所有提供insightface和opennsfw2等模型的依赖项。
+
+Only CPU is processing只有CPU在处理
+Do not install onnxruntime and onnxruntime-xxx at the same time, otherwise only CPUExecutionProvider will run.
+不要同时安装onnxruntime和onnxruntime-xxx，否则只有CPUExecutionProvider运行。
+
+pip uninstall onnxruntime onnxruntime-xxx
+pip install onnxruntime-xxx
+Progress stucked进展受阻
+You probably triggered the NSFW filter and the application stopped processing.
+您可能触发了NSFW筛选器，应用程序停止处理。
+
+Preview crashed预览崩溃
+You probably triggered the NSFW filter and the application closed itself.
+您可能触发了NSFW过滤器，应用程序自动关闭。
