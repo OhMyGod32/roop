@@ -1,4 +1,3 @@
 @echo off
-CHCP 65001
-.\git\bin\git.exe pull
+git pull
 pause

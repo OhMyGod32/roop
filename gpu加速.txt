@@ -1,0 +1,9 @@
+pip uninstall onnxruntime onnxruntime-gpu -y
+pip install onnxruntime-gpu==1.15.1
+
+
+
+git branch
+git fetch origin
+git reset --hard origin/main
+git pull
